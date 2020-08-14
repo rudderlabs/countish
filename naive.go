@@ -1,5 +1,7 @@
 package countish
 
+import "encoding/json"
+
 type Counter interface {
 	Observe(string)
 	ItemsAboveThreshold(float64) []Entry
@@ -30,4 +32,14 @@ func (ns *naiveSampler) ItemsAboveThreshold(val float64) []Entry {
 		}
 	}
 	return entries
+}
+
+func Marshal(lc Counter) (json.RawMessage, error) {
+	return json.Marshal(lc)
+
+}
+
+func LossyCounterFromJson(js json.RawMessage) (lc *lossyCounter, err error) {
+	err = json.Unmarshal(js, &lc)
+	return
 }

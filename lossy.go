@@ -5,16 +5,16 @@ import (
 )
 
 type fDeltaPair struct {
-	f     float64
-	delta float64
+	f     float64 `json:"f"`
+	delta float64 `json:"delta"`
 }
 
 type lossyCounter struct {
-	support        float64
-	errorTolerance float64
-	D              map[string]fDeltaPair
-	N              uint64
-	bucketWidth    uint64
+	support        float64               `json:"support"`
+	errorTolerance float64               `json:"errorTolerance"`
+	D              map[string]fDeltaPair `json:"D"`
+	N              uint64                `json:"N"`
+	bucketWidth    uint64                `json:"bucketWidth"`
 }
 
 func NewLossyCounter(support, errorTolerance float64) *lossyCounter {
